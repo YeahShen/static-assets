@@ -22,12 +22,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Test with IPv6, fallback to IPv4
+      - name: Debug IPv6
         run: |
-          if curl -6 -s --max-time 5 https://example.com >/dev/null; then
-            echo "Using IPv6"
-            curl -6 https://example.com
-          else
-            echo "IPv6 unavailable, fallback to IPv4"
-            curl -4 https://example.com
-          fi
+          curl -6 -sS --max-time 5 https://example.com -o /dev/null
+          echo "curl exit code: $?"
